@@ -9,7 +9,7 @@ LOGISTIC_REGRESSION_PATH = SAVED_MODELS_PATH + "/logistic-regression.joblib"
 
 
 def save_model(model, path: str):
-    dump(model, path)
+    dump(model, path, 9)
 
 def load_model(path: str):
     return load(path)

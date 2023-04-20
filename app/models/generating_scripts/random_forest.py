@@ -7,10 +7,10 @@ from app.tools.file_connector import save_model, RANDOM_FOREST_PATH
 from sklearn.ensemble import RandomForestClassifier
 
 k_best = 37
-n_estimators = 400
+n_estimators = 50
 
 selector = SelectKBest(score_func=mutual_info_classif, k=k_best)
-clf = RandomForestClassifier(random_state=0, n_jobs=-1, n_estimators=n_estimators)
+clf = RandomForestClassifier(random_state=0, n_jobs=-1, n_estimators=n_estimators, max_depth=30)
 pipe = make_pipeline(selector, clf)
 
 X, y = LoadData().load_X_y()
