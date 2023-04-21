@@ -1,6 +1,7 @@
 import pandas as pd
+from app.models.abstractmodel import AbstractModel
 
-class Heuristic:
+class Heuristic(AbstractModel):
     def predict(self, X):
         X = pd.DataFrame(X)
         if X.shape[1] == 1:

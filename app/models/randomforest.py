@@ -1,11 +1,9 @@
 from app.tools.file_connector import load_random_forest
+from app.models.abstractmodel import AbstractModel
 
-
-class RandomForest:
-    __classifier = None
-
+class RandomForest(AbstractModel):
     def __init__(self):
-        self.__classifier = load_random_forest()
+        self._classifier = load_random_forest()
 
     def predict(self, X):
-        return self.__classifier.predict(X)
+        return self._classifier.predict(X)

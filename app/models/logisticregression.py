@@ -1,11 +1,11 @@
 from app.tools.file_connector import load_logistic_regression
+from app.models.abstractmodel import AbstractModel
 
-
-class LogisticRegression:
-    __classifier = None
+class LogisticRegression(AbstractModel):
+    # __classifier = None
 
     def __init__(self):
-        self.__classifier = load_logistic_regression()
+        self._classifier = load_logistic_regression()
 
     def predict(self, X):
-        return self.__classifier.predict(X)
+        return self._classifier.predict(X)

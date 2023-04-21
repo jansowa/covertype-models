@@ -19,3 +19,7 @@ def load_random_forest():
 
 def load_logistic_regression():
     return load_model(LOGISTIC_REGRESSION_PATH)
+
+def load_neural_network():
+    # TODO: implement
+    pass
