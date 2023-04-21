@@ -1,31 +1,24 @@
-from sklearn.model_selection import train_test_split
 from itertools import cycle
 import matplotlib.pyplot as plt
 from sklearn.metrics import roc_curve, auc
 from sklearn.preprocessing import LabelBinarizer
-from sklearn.metrics import RocCurveDisplay, accuracy_score
+from sklearn.metrics import RocCurveDisplay
 import numpy as np
 
 
-def print_roc_curves_return_accuracy(classifier, X, y) -> float:
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, random_state=42, stratify=y)
-    y_score = classifier.fit(X_train, y_train).predict_proba(X_test)
-    accuracy = accuracy_score(y_test, np.argmax(y_score, axis=1) + 1)
+def predict_proba_to_class(y_score):
+    return np.argmax(y_score, axis=1) + 1
+def print_roc_curves(y_score, y_train, y_test, model_name) -> None:
     fig, ax = plt.subplots(figsize=(6, 6))
-
     fpr, tpr, roc_auc = dict(), dict(), dict()
-
     n_classes = 7  # TODO: take from y or as parameters
-
     label_binarizer = LabelBinarizer().fit(y_train)
     y_onehot_test = label_binarizer.transform(y_test)
-
     for i in range(n_classes):
         fpr[i], tpr[i], _ = roc_curve(y_onehot_test[:, i], y_score[:, i])
         roc_auc[i] = auc(fpr[i], tpr[i])
 
-    target_names = ['Cover type 1', 'Cover type 2', 'Cover type 3', 'Cover type 4', 'Cover type 5', 'Cover type 6',
-                    'Cover type 7']  # implement smarter
+    target_names = ['cover type ' + str(i) for i in range(1, 8)]
     colors = cycle(["aqua", "darkorange", "cornflowerblue", "black", "rosybrown", "beige", "cyan"])
     for class_id, color in zip(range(n_classes), colors):
         RocCurveDisplay.from_predictions(
@@ -40,10 +33,9 @@ def print_roc_curves_return_accuracy(classifier, X, y) -> float:
     plt.axis("square")
     plt.xlabel("False Positive Rate")
     plt.ylabel("True Positive Rate")
-    plt.title("Extension of Receiver Operating Characteristic\nto One-vs-Rest multiclass")
+    plt.title("Extension of Receiver Operating Characteristic\nto One-vs-Rest multiclass for " + model_name)
     plt.legend()
     plt.show()
-    return accuracy
 
 
 def plot_models_accuracy(names_accuracies: dict):
