@@ -12,7 +12,6 @@ LOGISTIC_REGRESSION = "logistic regression"
 NEURAL_NETWORK = "neural network"
 
 X_train, X_test, y_train, y_test = LoadData().load_X_y_splitted()
-X_train, X_test, y_train, y_test = X_train.iloc[:2000, :], X_test.iloc[:1000, :], y_train[:2000], y_test[:1000]
 
 accuracies = dict()
 y_score = dict()
@@ -32,12 +31,32 @@ X_test_scaled = scaler.fit_transform(X_test)
 y_train_dummies = pd.get_dummies(y_train)
 y_test_dummies = pd.get_dummies(y_test)
 neural_network = untrained_neural_network()
-neural_network.fit(X_train_scaled, y_train_dummies, epochs=10) # TODO: set more epochs
+
+history = neural_network.fit(X_train_scaled, y_train_dummies, epochs=35, validation_data=(X_test_scaled, y_test_dummies))
 y_score[NEURAL_NETWORK] = neural_network.predict(X_test_scaled)
 accuracies[NEURAL_NETWORK] = accuracy_score(y_test, predict_proba_to_class(y_score[NEURAL_NETWORK]))
 
+import matplotlib.pyplot as plt
+plt.plot(history.history['accuracy'])
+plt.plot(history.history['val_accuracy'])
+plt.title('Neural network accuracy training curve')
+plt.ylabel('accuracy')
+plt.xlabel('epoch')
+plt.legend(['train', 'test'], loc='upper left')
+plt.show()
 
-y_score[HEURISTIC] = accuracy_score(y_test, Heuristic().predict(X_test))
+plt.plot(history.history['loss'])
+plt.plot(history.history['val_loss'])
+plt.title('Neural network loss training curve')
+plt.ylabel('loss')
+plt.xlabel('epoch')
+plt.legend(['train', 'test'], loc='upper left')
+plt.show()
+
+accuracies[HEURISTIC] = accuracy_score(y_test, Heuristic().predict(X_test))
+
+
+
 
 plot_models_accuracy(accuracies)
 
