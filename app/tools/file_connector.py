@@ -2,7 +2,7 @@
 
 from joblib import dump, load
 from app.definitions import ROOT_DIR
-from app.models.generating_scripts.untrained_model import untrained_neural_network
+from app.models.untrained_model import untrained_neural_network
 
 SAVED_MODELS_PATH = ROOT_DIR + "/models/saved"
 RANDOM_FOREST_PATH = SAVED_MODELS_PATH + "/random-forest.joblib"
