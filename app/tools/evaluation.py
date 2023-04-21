@@ -7,6 +7,7 @@ import numpy as np
 from numpy.typing import ArrayLike
 
 
+#TODO: move this function somewhere
 def predict_proba_to_class(y_score) -> ArrayLike:
     return np.argmax(y_score, axis=1) + 1
 

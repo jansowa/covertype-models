@@ -1,20 +1,20 @@
 import pandas as pd
-
 from sklearn.preprocessing import MinMaxScaler
-
 from app.tools.load_data import LoadData
+from app.tools.file_connector import NEURAL_NETWORK_PARAMS_PATH
+import tensorflow as tf
+import optuna
+
 
 X_train, X_test, y_train, y_test = LoadData().load_X_y_splitted()
 
 scaler = MinMaxScaler()
 X_train_scaled = scaler.fit_transform(X_train)
-X_test_scaled = scaler.fit_transform(X_test)
+X_test_scaled = scaler.transform(X_test)
 
 y_train_dummies = pd.get_dummies(y_train)
 y_test_dummies = pd.get_dummies(y_test)
 
-import tensorflow as tf
-import optuna
 
 
 def objective(trial):
@@ -56,7 +56,7 @@ study.enqueue_trial({
     "activation_function": "relu",
     "momentum": 0.0
 })
-study.optimize(objective, n_trials=100)
+study.optimize(objective, n_trials=30)
 
 print("Number of finished trials: {}".format(len(study.trials)))
 
@@ -69,4 +69,4 @@ print("  Params: ")
 for key, value in trial.params.items():
     print("    {}: {}".format(key, value))
 
-pd.Series(trial.params).to_csv("../saved/best_nn_params.csv")
+pd.Series(trial.params).to_csv(NEURAL_NETWORK_PARAMS_PATH)
