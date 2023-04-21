@@ -28,7 +28,7 @@ accuracies[HEURISTIC] = accuracy_score(y_test, Heuristic().predict(X_test))
 
 scaler = MinMaxScaler()
 X_train_scaled = scaler.fit_transform(X_train)
-X_test_scaled = scaler.fit_transform(X_test)
+X_test_scaled = scaler.transform(X_test)
 y_train_dummies = pd.get_dummies(y_train)
 y_test_dummies = pd.get_dummies(y_test)
 neural_network = untrained_neural_network()
