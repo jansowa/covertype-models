@@ -22,4 +22,19 @@ docker run -d --name mycontainer -p 80:80 covertype-image
 Now you can use the API directly or via Swagger with the documentation: http://127.0.0.1:8000/docs
 
 ## 3. Evaluation of models, neural network training curve
-TODO
+
+The script displaying the model comparison and learning curves can be found [in this file](app/comparison.py). Its execution takes some time, so I display the graphs here as well:
+
+!["Accuracy comarison"](images/accuracy-comparison.png)
+
+<p float="left">
+  <img src="images/nn-accuracy-curve.png" alt="Neural network accuracy learning curve" width="49%" />
+  <img src="images/nn-los-curve.png" alt="Neural network loss training curve" width="49%" /> 
+</p>
+
+
+<p float="left">
+  <img src="images/logistic-regression-roc.png" alt="Logistic regression ROC" width="32%" />
+  <img src="images/neural-network-roc.png" alt="Neural network ROC" width="32%" /> 
+  <img src="images/random-forest-roc.png" alt="Random forest ROC" width="32%" /> 
+</p>
