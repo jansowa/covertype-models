@@ -4,14 +4,35 @@ from sklearn.metrics import roc_curve, auc
 from sklearn.preprocessing import LabelBinarizer
 from sklearn.metrics import RocCurveDisplay
 import numpy as np
+from numpy.typing import ArrayLike
 
 
-def predict_proba_to_class(y_score):
+def predict_proba_to_class(y_score) -> ArrayLike:
     return np.argmax(y_score, axis=1) + 1
+
+
+def print_training_curves(history) -> None:
+    plt.plot(history.history['accuracy'])
+    plt.plot(history.history['val_accuracy'])
+    plt.title('Neural network accuracy training curve')
+    plt.ylabel('accuracy')
+    plt.xlabel('epoch')
+    plt.legend(['train', 'test'], loc='upper left')
+    plt.show()
+
+    plt.plot(history.history['loss'])
+    plt.plot(history.history['val_loss'])
+    plt.title('Neural network loss training curve')
+    plt.ylabel('loss')
+    plt.xlabel('epoch')
+    plt.legend(['train', 'test'], loc='upper left')
+    plt.show()
+
+
 def print_roc_curves(y_score, y_train, y_test, model_name) -> None:
     fig, ax = plt.subplots(figsize=(6, 6))
     fpr, tpr, roc_auc = dict(), dict(), dict()
-    n_classes = 7  # TODO: take from y or as parameters
+    n_classes = 7
     label_binarizer = LabelBinarizer().fit(y_train)
     y_onehot_test = label_binarizer.transform(y_test)
     for i in range(n_classes):
@@ -38,7 +59,7 @@ def print_roc_curves(y_score, y_train, y_test, model_name) -> None:
     plt.show()
 
 
-def plot_models_accuracy(names_accuracies: dict):
+def plot_models_accuracy(names_accuracies: dict) -> None:
     names = list(names_accuracies.keys())
     accuracies = list(names_accuracies.values())
     plt.figure(figsize=(7, 5))

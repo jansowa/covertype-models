@@ -1,6 +1,6 @@
 from app.models.generating_scripts.untrained_model import untrained_logistic_regression, untrained_random_forest, untrained_neural_network
 from app.models.heuristic import Heuristic
-from app.tools.evaluation import print_roc_curves, plot_models_accuracy, predict_proba_to_class
+from app.tools.evaluation import print_roc_curves, plot_models_accuracy, predict_proba_to_class, print_training_curves
 from app.tools.load_data import LoadData
 from sklearn.metrics import accuracy_score
 from sklearn.preprocessing import MinMaxScaler
@@ -24,6 +24,7 @@ random_forest = untrained_random_forest()
 y_score[RANDOM_FOREST] = random_forest.fit(X_train, y_train).predict_proba(X_test)
 accuracies[RANDOM_FOREST] = accuracy_score(y_test, predict_proba_to_class(y_score[RANDOM_FOREST]))
 
+accuracies[HEURISTIC] = accuracy_score(y_test, Heuristic().predict(X_test))
 
 scaler = MinMaxScaler()
 X_train_scaled = scaler.fit_transform(X_train)
@@ -36,29 +37,8 @@ history = neural_network.fit(X_train_scaled, y_train_dummies, epochs=35, validat
 y_score[NEURAL_NETWORK] = neural_network.predict(X_test_scaled)
 accuracies[NEURAL_NETWORK] = accuracy_score(y_test, predict_proba_to_class(y_score[NEURAL_NETWORK]))
 
-import matplotlib.pyplot as plt
-plt.plot(history.history['accuracy'])
-plt.plot(history.history['val_accuracy'])
-plt.title('Neural network accuracy training curve')
-plt.ylabel('accuracy')
-plt.xlabel('epoch')
-plt.legend(['train', 'test'], loc='upper left')
-plt.show()
 
-plt.plot(history.history['loss'])
-plt.plot(history.history['val_loss'])
-plt.title('Neural network loss training curve')
-plt.ylabel('loss')
-plt.xlabel('epoch')
-plt.legend(['train', 'test'], loc='upper left')
-plt.show()
-
-accuracies[HEURISTIC] = accuracy_score(y_test, Heuristic().predict(X_test))
-
-
-
-
+print_training_curves(history)
 plot_models_accuracy(accuracies)
-
 for model in [LOGISTIC_REGRESSION, RANDOM_FOREST, NEURAL_NETWORK]:
     print_roc_curves(y_score[model], y_train, y_test, model)
