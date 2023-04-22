@@ -15,7 +15,7 @@ class LoadData:
     __y_test = None
 
     def __init__(self):
-        df = pd.read_csv(ROOT_DIR + "/../covtype.data")
+        df = pd.read_csv(ROOT_DIR + "/../covtype.data", header=None)
         df.columns = self.__columns
         self.__X = df.drop(columns='Cover_Type')
         self.__y = df["Cover_Type"]
