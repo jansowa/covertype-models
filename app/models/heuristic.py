@@ -2,6 +2,7 @@ import pandas as pd
 from app.models.abstract_model import AbstractModel
 from numpy.typing import ArrayLike
 
+
 class Heuristic(AbstractModel):
     def predict(self, X) -> ArrayLike:
         X = pd.DataFrame(X)

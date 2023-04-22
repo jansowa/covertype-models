@@ -2,6 +2,7 @@ from app.tools.file_helper import load_logistic_regression
 from app.models.abstract_model import AbstractModel
 from numpy.typing import ArrayLike
 
+
 class LogisticRegression(AbstractModel):
 
     def __init__(self):

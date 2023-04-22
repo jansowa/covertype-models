@@ -1,5 +1,6 @@
 from numpy.typing import ArrayLike
 
+
 class AbstractModel(object):
     _classifier = None
 
