@@ -1,12 +1,5 @@
 from joblib import dump, load
-from app.definitions import ROOT_DIR
-
-SAVED_MODELS_PATH = ROOT_DIR + "/models/saved"
-RANDOM_FOREST_PATH = SAVED_MODELS_PATH + "/random-forest.joblib"
-LOGISTIC_REGRESSION_PATH = SAVED_MODELS_PATH + "/logistic-regression.joblib"
-NEURAL_NETWORK_PATH = SAVED_MODELS_PATH + "/neural-network.ckpt"
-NEURAL_NETWORK_PARAMS_PATH = SAVED_MODELS_PATH + "/best_nn_params.csv"
-MIN_MAX_SCALER_PATH = SAVED_MODELS_PATH + "/min_max_scaler.joblib"
+from app.file_paths import RANDOM_FOREST_PATH, LOGISTIC_REGRESSION_PATH, NEURAL_NETWORK_PATH, MIN_MAX_SCALER_PATH
 
 
 def save_model(model, path: str) -> None:

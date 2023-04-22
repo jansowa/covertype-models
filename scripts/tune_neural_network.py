@@ -1,7 +1,7 @@
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
 from app.tools.load_data import LoadData
-from app.tools.file_helper import NEURAL_NETWORK_PARAMS_PATH
+from app.file_paths import NEURAL_NETWORK_PARAMS_PATH
 import tensorflow as tf
 import optuna
 

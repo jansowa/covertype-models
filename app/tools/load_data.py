@@ -1,6 +1,6 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from app.definitions import ROOT_DIR
+from app.file_paths import DATASET_PATH
 from typing import Tuple
 
 
@@ -17,7 +17,7 @@ class LoadData:
     __y_test = None
 
     def __init__(self):
-        df = pd.read_csv(ROOT_DIR + "/../covtype.data", header=None)
+        df = pd.read_csv(DATASET_PATH, header=None)
         df.columns = self.__columns
         self.__X = df.drop(columns='Cover_Type')
         self.__y = df["Cover_Type"]

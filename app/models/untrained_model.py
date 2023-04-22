@@ -6,7 +6,7 @@ from sklearn.pipeline import make_pipeline
 from sklearn.ensemble import RandomForestClassifier
 import pandas as pd
 import tensorflow as tf
-from app.definitions import ROOT_DIR
+from app.file_paths import ROOT_DIR
 
 
 def untrained_logistic_regression():
@@ -41,7 +41,8 @@ def untrained_neural_network():
         tf.keras.layers.Dense(first_dense_units * 4, activation=activation_function),
         tf.keras.layers.Dense(7, activation='softmax')
     ])
-    sgd = tf.keras.optimizers.legacy.SGD(learning_rate=float(params["learning_rate"]), momentum=float(params["momentum"]))
+    sgd = tf.keras.optimizers.legacy.SGD(
+        learning_rate=float(params["learning_rate"]), momentum=float(params["momentum"]))
 
     model.compile(optimizer=sgd,
                   loss='categorical_crossentropy',
