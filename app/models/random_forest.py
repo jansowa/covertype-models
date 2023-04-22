@@ -1,5 +1,6 @@
 from app.tools.file_connector import load_random_forest
-from app.models.abstractmodel import AbstractModel
+from app.models.abstract_model import AbstractModel
+
 
 class RandomForest(AbstractModel):
     def __init__(self):

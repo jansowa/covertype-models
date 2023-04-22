@@ -1,13 +1,13 @@
 from fastapi import FastAPI
 from app.models.heuristic import Heuristic
-from app.models.randomforest import RandomForest
-from app.models.logisticregression import LogisticRegression
-from app.models.neuralnetwork import NeuralNetwork
-from app.models.abstractmodel import AbstractModel
+from app.models.random_forest import RandomForest
+from app.models.logistic_regression import LogisticRegression
+from app.models.neural_network import NeuralNetwork
+from app.models.abstract_model import AbstractModel
 import numpy as np
 
-from app.dto.predictrequest import PredictRequest
-from app.dto.modeltypeenum import ModelTypeEnum
+from app.dto.predict_request import PredictRequest
+from app.dto.model_type_enum import ModelTypeEnum
 
 app = FastAPI()
 

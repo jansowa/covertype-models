@@ -8,6 +8,7 @@ import pandas as pd
 import tensorflow as tf
 from app.definitions import ROOT_DIR
 
+
 def untrained_logistic_regression():
     k_best = 35
     selector = SelectKBest(score_func=mutual_info_classif, k=k_best)
@@ -23,6 +24,7 @@ def untrained_random_forest():
     selector = SelectKBest(score_func=mutual_info_classif, k=k_best)
     clf = RandomForestClassifier(random_state=0, n_jobs=-1, n_estimators=n_estimators, max_depth=30)
     return make_pipeline(selector, clf)
+
 
 def untrained_neural_network():
     params_df = pd.read_csv(ROOT_DIR + "/models/saved/best_nn_params.csv")

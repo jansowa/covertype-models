@@ -1,5 +1,5 @@
 from app.tools.file_connector import load_logistic_regression
-from app.models.abstractmodel import AbstractModel
+from app.models.abstract_model import AbstractModel
 
 class LogisticRegression(AbstractModel):
 

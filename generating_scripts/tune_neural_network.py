@@ -5,7 +5,6 @@ from app.tools.file_connector import NEURAL_NETWORK_PARAMS_PATH
 import tensorflow as tf
 import optuna
 
-
 X_train, X_test, y_train, y_test = LoadData().load_X_y_splitted()
 
 scaler = MinMaxScaler()
@@ -14,7 +13,6 @@ X_test_scaled = scaler.transform(X_test)
 
 y_train_dummies = pd.get_dummies(y_train)
 y_test_dummies = pd.get_dummies(y_test)
-
 
 
 def objective(trial):
@@ -39,11 +37,11 @@ def objective(trial):
                   loss='categorical_crossentropy',
                   metrics=['accuracy'])
 
-    earlystopping = tf.keras.callbacks.EarlyStopping(monitor="val_accuracy",
-                                                     mode="max", patience=5,
-                                                     restore_best_weights=True)
+    early_stopping = tf.keras.callbacks.EarlyStopping(monitor="val_accuracy",
+                                                      mode="max", patience=5,
+                                                      restore_best_weights=True)
     history = model.fit(X_train_scaled, y_train_dummies, epochs=100, validation_data=(X_test_scaled, y_test_dummies),
-                        callbacks=[earlystopping])
+                        callbacks=[early_stopping])
     return max(history.history['val_accuracy'])
 
 
@@ -61,12 +59,12 @@ study.optimize(objective, n_trials=30)
 print("Number of finished trials: {}".format(len(study.trials)))
 
 print("Best trial:")
-trial = study.best_trial
+best_trial = study.best_trial
 
-print("  Value: {}".format(trial.value))
+print("  Value: {}".format(best_trial.value))
 
 print("  Params: ")
-for key, value in trial.params.items():
+for key, value in best_trial.params.items():
     print("    {}: {}".format(key, value))
 
-pd.Series(trial.params).to_csv(NEURAL_NETWORK_PARAMS_PATH)
+pd.Series(best_trial.params).to_csv(NEURAL_NETWORK_PARAMS_PATH)
