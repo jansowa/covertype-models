@@ -19,7 +19,7 @@ docker build -t covertype-image .
 docker run -d --name mycontainer -p 80:80 covertype-image
 ```
 
-Now you can use the API directly or via Swagger with the documentation: http://127.0.0.1:8000/docs
+Now you can use the API directly or via Swagger with the documentation: http://127.0.0.1/docs
 
 ## 3. Evaluation of models, neural network training curve
 
