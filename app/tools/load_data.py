@@ -3,6 +3,7 @@ from sklearn.model_selection import train_test_split
 from app.definitions import ROOT_DIR
 from typing import Tuple
 
+
 class LoadData:
     __columns = ['Elevation', 'Aspect', 'Slope', 'Horizontal_Distance_To_Hydrology', 'Vertical_Distance_To_Hydrology',
                  'Horizontal_Distance_To_Roadways', 'Hillshade_9am', 'Hillshade_Noon', 'Hillshade_3pm',

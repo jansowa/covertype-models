@@ -58,5 +58,5 @@ def plot_models_accuracy(names_accuracies: dict) -> None:
     plt.show()
 
 
-def predict_proba_to_class(y_score: ArrayLike) -> ArrayLike:
+def predict_proba_to_class(y_score) -> ArrayLike:
     return np.argmax(y_score, axis=1) + 1
