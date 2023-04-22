@@ -1,12 +1,15 @@
 from app.tools.load_data import LoadData
 from app.models.untrained_model import untrained_neural_network
 from sklearn.preprocessing import MinMaxScaler
-from app.tools.file_connector import NEURAL_NETWORK_PATH
+from app.tools.file_connector import NEURAL_NETWORK_PATH, MIN_MAX_SCALER_PATH, save_model
 import pandas as pd
 import tensorflow as tf
 
 X, y = LoadData().load_X_y()
-X_scaled = MinMaxScaler().fit_transform(X)
+scaler = MinMaxScaler()
+scaler.fit(X)
+save_model(scaler, MIN_MAX_SCALER_PATH)
+X_scaled = scaler.transform(X)
 y_dummies = pd.get_dummies(y)
 
 network = untrained_neural_network()

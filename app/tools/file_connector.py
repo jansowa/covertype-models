@@ -9,6 +9,7 @@ RANDOM_FOREST_PATH = SAVED_MODELS_PATH + "/random-forest.joblib"
 LOGISTIC_REGRESSION_PATH = SAVED_MODELS_PATH + "/logistic-regression.joblib"
 NEURAL_NETWORK_PATH = SAVED_MODELS_PATH + "/neural-network.ckpt"
 NEURAL_NETWORK_PARAMS_PATH = SAVED_MODELS_PATH + "/best_nn_params.csv"
+MIN_MAX_SCALER_PATH = SAVED_MODELS_PATH + "/min_max_scaler.joblib"
 
 
 def save_model(model, path: str):
@@ -31,3 +32,7 @@ def load_neural_network():
     neural_network = untrained_neural_network()
     neural_network.load_weights(NEURAL_NETWORK_PATH)
     return neural_network
+
+
+def load_min_max_scaler():
+    return load_model(MIN_MAX_SCALER_PATH)
