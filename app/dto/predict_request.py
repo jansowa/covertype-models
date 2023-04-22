@@ -1,6 +1,6 @@
 from pydantic import BaseModel, Field
 
-from app.dto import ModelTypeEnum
+from app.dto.model_type_enum import ModelTypeEnum
 
 
 class PredictRequest(BaseModel):

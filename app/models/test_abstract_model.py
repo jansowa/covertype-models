@@ -1,7 +1,7 @@
 import unittest
 from random import random
 import pandas as pd
-from app.models import AbstractModel
+from app.models.abstract_model import AbstractModel
 import numpy.testing
 
 

@@ -1,5 +1,5 @@
 from app.tools.file_helper import load_neural_network, load_min_max_scaler
-from app.models import AbstractModel
+from app.models.abstract_model import AbstractModel
 from app.tools.evaluation import predict_proba_to_class
 from sklearn.preprocessing import MinMaxScaler
 from numpy.typing import ArrayLike

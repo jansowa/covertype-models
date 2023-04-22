@@ -3,7 +3,8 @@ import numpy as np
 import pandas as pd
 from io import BytesIO
 
-from app.dto import PredictRequest, ModelTypeEnum, get_model_type
+from app.dto.predict_request import PredictRequest
+from app.dto.model_type_enum import ModelTypeEnum, get_model_type
 
 app = FastAPI()
 
