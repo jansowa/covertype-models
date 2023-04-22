@@ -1,5 +1,5 @@
 import pandas as pd
-from app.models.abstract_model import AbstractModel
+from app.models import AbstractModel
 from numpy.typing import ArrayLike
 
 class Heuristic(AbstractModel):

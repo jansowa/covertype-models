@@ -1,5 +1,4 @@
-from app.models.untrained_model import untrained_logistic_regression, untrained_random_forest, untrained_neural_network
-from app.models.heuristic import Heuristic
+from app.models import Heuristic, untrained_logistic_regression, untrained_random_forest, untrained_neural_network
 from app.tools.evaluation import print_roc_curves, plot_models_accuracy, predict_proba_to_class, print_training_curves
 from app.tools.load_data import LoadData
 from sklearn.metrics import accuracy_score

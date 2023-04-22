@@ -1,5 +1,5 @@
 from app.tools.load_data import LoadData
-from app.models.untrained_model import untrained_neural_network
+from app.models import untrained_neural_network
 from sklearn.preprocessing import MinMaxScaler
 from app.tools.file_helper import NEURAL_NETWORK_PATH, MIN_MAX_SCALER_PATH, save_model
 import pandas as pd

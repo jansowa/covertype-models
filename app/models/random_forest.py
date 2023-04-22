@@ -1,5 +1,5 @@
 from app.tools.file_helper import load_random_forest
-from app.models.abstract_model import AbstractModel
+from app.models import AbstractModel
 from numpy.typing import ArrayLike
 
 
