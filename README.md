@@ -23,7 +23,7 @@ Now you can use the API directly or via Swagger with the documentation: http://1
 
 ## 3. Evaluation of models, neural network training curve
 
-The script displaying the model comparison and learning curves can be found [in this file](app/comparison.py). Its execution takes some time, so I display the graphs here as well:
+The script displaying the model comparison and learning curves can be found [in this file](scripts/comparison.py). Its execution takes some time, so I display the graphs here as well:
 
 !["Accuracy comarison"](images/accuracy-comparison.png)
 
