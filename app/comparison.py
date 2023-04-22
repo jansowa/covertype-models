@@ -38,7 +38,8 @@ y_score[NEURAL_NETWORK] = neural_network.predict(X_test_scaled)
 accuracies[NEURAL_NETWORK] = accuracy_score(y_test, predict_proba_to_class(y_score[NEURAL_NETWORK]))
 
 
-print_training_curves(history)
+print_training_curves(history, 'accuracy')
+print_training_curves(history, 'loss')
 plot_models_accuracy(accuracies)
 for model in [LOGISTIC_REGRESSION, RANDOM_FOREST, NEURAL_NETWORK]:
     print_roc_curves(y_score[model], y_train, y_test, model)
