@@ -9,15 +9,14 @@ class ModelTypeEnum(str, Enum):
     random_forest = "random_forest"
     neural_network = "neural_network"
 
-
-def get_model_by_type(model_type: ModelTypeEnum) -> AbstractModel:
-    if model_type == ModelTypeEnum.heuristic:
-        return Heuristic()
-    elif model_type == ModelTypeEnum.random_forest:
-        return RandomForest()
-    elif model_type == ModelTypeEnum.logistic_regression:
-        return LogisticRegression()
-    elif model_type == ModelTypeEnum.neural_network:
-        return NeuralNetwork()
-    else:
-        raise NotImplementedError
+    def get_model_by_type(self) -> AbstractModel:
+        if self == ModelTypeEnum.heuristic:
+            return Heuristic()
+        elif self == ModelTypeEnum.random_forest:
+            return RandomForest()
+        elif self == ModelTypeEnum.logistic_regression:
+            return LogisticRegression()
+        elif self == ModelTypeEnum.neural_network:
+            return NeuralNetwork()
+        else:
+            raise NotImplementedError
