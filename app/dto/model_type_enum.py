@@ -1,10 +1,6 @@
 from enum import Enum
 
-from app.models.abstract_model import AbstractModel
-from app.models.heuristic import Heuristic
-from app.models.logistic_regression import LogisticRegression
-from app.models.neural_network import NeuralNetwork
-from app.models.random_forest import RandomForest
+from app.models import AbstractModel, Heuristic, LogisticRegression, NeuralNetwork, RandomForest
 
 
 class ModelTypeEnum(str, Enum):
@@ -14,7 +10,7 @@ class ModelTypeEnum(str, Enum):
     neural_network = "neural_network"
 
 
-def get_model_type(model_type: ModelTypeEnum) -> AbstractModel:
+def get_model_by_type(model_type: ModelTypeEnum) -> AbstractModel:
     if model_type == ModelTypeEnum.heuristic:
         return Heuristic()
     elif model_type == ModelTypeEnum.random_forest:

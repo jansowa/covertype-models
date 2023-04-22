@@ -1,6 +1,5 @@
 from joblib import dump, load
 from app.definitions import ROOT_DIR
-from app.models.untrained_model import untrained_neural_network
 
 SAVED_MODELS_PATH = ROOT_DIR + "/models/saved"
 RANDOM_FOREST_PATH = SAVED_MODELS_PATH + "/random-forest.joblib"
@@ -26,8 +25,7 @@ def load_logistic_regression():
     return load_model(LOGISTIC_REGRESSION_PATH)
 
 
-def load_neural_network():
-    neural_network = untrained_neural_network()
+def load_neural_network_weights(neural_network):
     neural_network.load_weights(NEURAL_NETWORK_PATH)
     return neural_network
 
